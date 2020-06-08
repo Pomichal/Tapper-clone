@@ -19,8 +19,8 @@ public class BeerBehaviour : MonoBehaviour
     {
         if(c.gameObject.CompareTag("Guest"))
         {
-            player.beersList.Remove(this);
-            Destroy(c.gameObject);
+            player.BeerDelivered(this);
+            c.gameObject.GetComponent<GuestBehaviour>().RemoveFromGame();
             Destroy(gameObject);
         }
         if(c.gameObject.CompareTag("GameOver"))

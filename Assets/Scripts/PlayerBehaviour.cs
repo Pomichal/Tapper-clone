@@ -9,44 +9,58 @@ public class PlayerBehaviour : MonoBehaviour
     public float timer;
     public bool timeOn;
 
+    public int points;
+    public int highScore;
+
+    public SpawnerBehaviour spawner;
+
     public List<BeerBehaviour> beersList = new List<BeerBehaviour>();
+
+    void Start()
+    {
+        highScore = PlayerPrefs.GetInt("highScore", 0);
+        spawner.RefreshHighScore();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.anyKeyDown)
+        if(spawner.gameOn)
         {
-            float ver = Input.GetAxisRaw("Vertical");
-
-            if(ver == 1 && transform.position.z > 0)
+            if(Input.anyKeyDown)
             {
-                transform.position += new Vector3(0, 0, -3);
+                float ver = Input.GetAxisRaw("Vertical");
+
+                if(ver == 1 && transform.position.z > 0)
+                {
+                    transform.position += new Vector3(0, 0, -3);
+                }
+                else if(ver == -1 && transform.position.z < 9)
+                {
+                    transform.position += new Vector3(0, 0, 3);
+                }
             }
-            else if(ver == -1 && transform.position.z < 9)
+
+            if(timeOn)
             {
-                transform.position += new Vector3(0, 0, 3);
+                timer -= Time.deltaTime;
+
+                if(timer < 0)
+                {
+                    SpawnBeer();
+                    timeOn = false;
+                }
             }
-        }
 
-        if(timeOn)
-        {
-            timer -= Time.deltaTime;
-
-            if(timer < 0)
+            if(Input.GetKeyDown(KeyCode.Space))
             {
-                SpawnBeer();
+                timer = timeUntilBeer;
+                timeOn = true;
+            }
+            if(Input.GetKeyUp(KeyCode.Space))
+            {
                 timeOn = false;
             }
-        }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            timer = timeUntilBeer;
-            timeOn = true;
-        }
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-            timeOn = false;
         }
     }
 
@@ -57,7 +71,20 @@ public class PlayerBehaviour : MonoBehaviour
             Destroy(b.gameObject);
         }
         beersList.Clear();
-        print("GAME OVER");
+        if(highScore < points)
+        {
+            highScore = points;
+            PlayerPrefs.SetInt("highScore", points);
+            spawner.RefreshHighScore();
+        }
+        spawner.GameOver();
+    }
+
+    public void BeerDelivered(BeerBehaviour beer)
+    {
+        beersList.Remove(beer);
+        points++;
+        spawner.RefreshPoints();
     }
 
     void SpawnBeer()
