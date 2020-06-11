@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class SpawnerBehaviour : MonoBehaviour
 {
-
+    public Animator animator;
     public GuestBehaviour guest;
-    public GameObject menu;
-    public GameObject inGame;
     public Text pointsText;
     public Text[] highScores;
     public Text title;
@@ -58,15 +56,13 @@ public class SpawnerBehaviour : MonoBehaviour
 
         title.text = "Oh no, game over";
         buttonText.text = "Restart";
-
+        animator.SetTrigger("StopGame");
         InitGame();
     }
 
     public void InitGame()
     {
         gameOn = false;
-        menu.SetActive(true);
-        inGame.SetActive(false);
         player.transform.position = Vector3.zero;
         player.points = 0;
         RefreshPoints();
@@ -75,8 +71,7 @@ public class SpawnerBehaviour : MonoBehaviour
     public void ChangeGameStatus()
     {
         gameOn = true;
-        menu.SetActive(false);
-        inGame.SetActive(true);
+        animator.SetTrigger("StartGame");
     }
 
     void SpawnGuest()

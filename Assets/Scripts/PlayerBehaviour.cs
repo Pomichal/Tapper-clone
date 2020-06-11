@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    public Slider beerTimer;
+    public Animator animator;
     public BeerBehaviour beer;
     public float timeUntilBeer;
     public float timer;
@@ -20,6 +23,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         highScore = PlayerPrefs.GetInt("highScore", 0);
         spawner.RefreshHighScore();
+        beerTimer.maxValue = timeUntilBeer;
     }
 
     // Update is called once per frame
@@ -44,7 +48,7 @@ public class PlayerBehaviour : MonoBehaviour
             if(timeOn)
             {
                 timer -= Time.deltaTime;
-
+                beerTimer.value = timer;
                 if(timer < 0)
                 {
                     SpawnBeer();
@@ -60,7 +64,9 @@ public class PlayerBehaviour : MonoBehaviour
             if(Input.GetKeyUp(KeyCode.Space))
             {
                 timeOn = false;
+                beerTimer.value = timeUntilBeer;
             }
+            animator.SetBool("timerOn", timeOn);
         }
     }
 
