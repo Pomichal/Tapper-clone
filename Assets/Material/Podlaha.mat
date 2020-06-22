@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pena
-  m_Shader: {fileID: -6465566751694194690, guid: 40b1143c26e5f9060b3b32f8d35dd4b4,
+  m_Name: Podlaha
+  m_Shader: {fileID: -6465566751694194690, guid: 811b4c12d1c90bf178b4e2f634c74fd0,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_86743406:
+        m_Texture: {fileID: 2800000, guid: ca3b3238d346da3cc9ba9fe0fc7344ac, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -49,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_4233F75A: 0.5
+    - Vector1_8C444C90: -0.04
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -72,14 +76,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_D4C0944B: {r: 0.9433962, g: 0.9227152, b: 0.2002492, a: 0}
-    - Color_EC98C6FA: {r: 1, g: 1, b: 1, a: 1}
-    - Vector3_498FD30E: {r: 0, g: 1, b: 0, a: 0}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - Color_BEA0F96A: {r: 0.9718425, g: 0.9803922, b: 0.3411765, a: 0}
+    - Vector3_1CE68E2F: {r: 0, g: 1, b: 0, a: 0}
+    - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
---- !u!114 &5303273333689437669
+--- !u!114 &7608017984981326655
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

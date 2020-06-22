@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
 
     void GameOver()
     {
-        title.text = "Oh no, game over";
+        title.text = "Game over";
         buttonText.text = "Restart";
         animator.SetBool("GameStatus", false);
     }
