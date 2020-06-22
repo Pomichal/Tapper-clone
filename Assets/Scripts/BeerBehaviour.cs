@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BeerBehaviour : MonoBehaviour
 {
 
-    public PlayerBehaviour player;
+    public App app;
     public float speed;
     public Rigidbody rb;
 
@@ -19,13 +19,13 @@ public class BeerBehaviour : MonoBehaviour
     {
         if(c.gameObject.CompareTag("Guest"))
         {
-            player.BeerDelivered(this);
+            app.player.BeerDelivered(this);
             c.gameObject.GetComponent<GuestBehaviour>().RemoveFromGame();
             Destroy(gameObject);
         }
         if(c.gameObject.CompareTag("GameOver"))
         {
-            player.GameOver();
+            app.onGameOver.Invoke();
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GuestBehaviour : MonoBehaviour
 {
     public GameObject beerObject;
-    public SpawnerBehaviour spawner;
+    public App app;
     public Animator animator;
     public Rigidbody rb;
     public float speed;
@@ -21,7 +21,7 @@ public class GuestBehaviour : MonoBehaviour
     {
         if(transform.position.x < 1)
         {
-            spawner.GameOver();
+            app.onGameOver.Invoke();
         }
     }
 
@@ -29,7 +29,7 @@ public class GuestBehaviour : MonoBehaviour
     {
         beerObject.SetActive(true);
         animator.SetTrigger("drink");
-        spawner.guestList.Remove(this);
+        app.spawner.guestList.Remove(this);
         rb.velocity = new Vector3();
         GetComponent<BoxCollider>().enabled = false;
         float animationLength = animator.GetCurrentAnimatorStateInfo(0).length + 2f;
